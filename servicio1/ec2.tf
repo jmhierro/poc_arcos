@@ -14,7 +14,8 @@ resource "aws_instance" "srv" {
   instance_type      = "t2.micro"
   subnet_id          = "subnet-0e00941824eaace25"
   tags = {
-    Name = "poc-arcos"
+    Name = "poc-arcos",
+    Owner = "jmhierro"
   }
 }
 
