@@ -21,3 +21,7 @@ resource "aws_instance" "srv" {
 output "ServerIP" {
   value = aws_instance.srv.private_ip
 }
+
+output "Group" {
+  value = "Amazon Linux"
+}
