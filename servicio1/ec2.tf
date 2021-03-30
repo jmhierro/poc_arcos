@@ -12,7 +12,7 @@ resource "aws_instance" "srv" {
   source_dest_check  = false
   ebs_optimized      = true
   instance_type      = "t2.micro"
-  subnet_id          = "subnet-0e00941824eaace25"
+  subnet_id          = "subnet-009c40c86e0ad16ff"
   tags = {
     Name = "poc-arcos",
     Owner = "jmhierro"
