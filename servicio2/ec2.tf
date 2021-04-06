@@ -15,7 +15,14 @@ resource "awx_inventory_group" "default" {
   inventory_id    = 3
 }
 
+locals {
+  instances_count = 1
+}
+
+
+
 resource "aws_instance" "srv" {
+  count             = "${local.ip}"
   ami               = "ami-0be2609ba883822ec"
   key_name          = "naas-support"
   vpc_security_group_ids = ["sg-046a78bd04f2057b2"]
@@ -30,6 +37,33 @@ resource "aws_instance" "srv" {
 }
 
 
+# resource "awx_host" "axwnode" {
+#   count = length(local.ip)
+#   name         = "poc-arcos-${count.index}"
+#   description  = "Nodo agregado desde terra"
+#   inventory_id = 3
+#   group_ids = [ 
+#     awx_inventory_group.default.id,
+#     2,
+#   ]
+#   enabled   = true
+#   variables = "ansible_host: ${local.ip[count.index]}"
+# }
+
+
+
+
+
+
+
+# resource "aws_route53_record" "ec2instance" {
+#   count = "${var.aws_ec2_instances_count}"
+#   zone_id = "${aws_route53_zone.private.zone_id}"
+#   name    = "appsrv-${count.index}.${var.r53-zone}"
+#   type    = "A"
+#   ttl     = "60"
+#   records = ["${element(aws_instance.srv_application.*.private_ip, count.index)}"]
+# }
 
 
 
