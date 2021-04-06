@@ -51,16 +51,6 @@ resource "awx_host" "axwnode" {
   # variables = "ansible_host: ${local.instances_count[count.index]}"
 }
 
-
-resource "null_resource" "health_check" {
-  provisioner "local-exec" {
-    command = "/usr/local/bin/awx --conf.host http://172.32.30.15  job_templates launch --extra_vars \"@extra_vars.json\" 10 --monitor -f json"
-  }
-}
-
-
-
-
 # resource "aws_route53_record" "ec2instance" {
 #   count = "${var.aws_ec2_instances_count}"
 #   zone_id = "${aws_route53_zone.private.zone_id}"
