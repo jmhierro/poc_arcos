@@ -22,7 +22,7 @@ locals {
 
 
 resource "aws_instance" "srv" {
-  count             = "${local.ip}"
+  count             = local.instances_count
   ami               = "ami-0be2609ba883822ec"
   key_name          = "naas-support"
   vpc_security_group_ids = ["sg-046a78bd04f2057b2"]
@@ -37,21 +37,26 @@ resource "aws_instance" "srv" {
 }
 
 
-# resource "awx_host" "axwnode" {
-#   count = length(local.ip)
-#   name         = "poc-arcos-${count.index}"
-#   description  = "Nodo agregado desde terra"
-#   inventory_id = 3
-#   group_ids = [ 
-#     awx_inventory_group.default.id,
-#     2,
-#   ]
-#   enabled   = true
-#   variables = "ansible_host: ${local.ip[count.index]}"
-# }
+resource "awx_host" "axwnode" {
+  count = local.instances_count
+  name         = "poc-arcos-${count.index}"
+  description  = "Nodo agregado desde terra"
+  inventory_id = 3
+  group_ids = [ 
+    awx_inventory_group.default.id,
+    2,
+  ]
+  enabled   = true
+  variables = "ansible_host: ${element(aws_instance.srv.*.private_ip, count.index)}"
+  # variables = "ansible_host: ${local.instances_count[count.index]}"
+}
 
 
-
+resource "null_resource" "health_check" {
+  provisioner "local-exec" {
+    command = "/usr/local/bin/awx --conf.host http://172.32.30.15  job_templates launch --extra_vars \"@extra_vars.json\" 10 --monitor -f json"
+  }
+}
 
 
 
