@@ -1,4 +1,5 @@
 {
+    "extra_vars": {
         "host_param": "tr_test",
         "netbackup" : "true",
         "lvm" : [
@@ -6,4 +7,5 @@
         "nagios": "true",
         "user_pmp": "true",
         "user_nss": "true"
+    }
 }
