@@ -33,28 +33,28 @@ resource "aws_instance" "srv" {
 
 
 
-resource "awx_host" "axwnode" {
-  name         = "poc-arcos"
-  description  = "Nodo agregado desde terra"
-  inventory_id = 2
-  group_ids = [ 2 ]
-#     data.awx_inventory_group.default.id,
-#     data.awx_inventory_group.pinodes.id,
-#   ]
-  enabled   = true
-  variables = templatefile("${path.module}/host.tpl", { ip = aws_instance.srv.private_ip} )
+# resource "awx_host" "axwnode" {
+#   name         = "poc-arcos"
+#   description  = "Nodo agregado desde terra"
+#   inventory_id = 2
+#   group_ids = [ 2 ]
+# #     data.awx_inventory_group.default.id,
+# #     data.awx_inventory_group.pinodes.id,
+# #   ]
+#   enabled   = true
+#   variables = templatefile("${path.module}/host.tpl", { ip = aws_instance.srv.private_ip} )
 
   
-#    <<YAML
-# ---
-# ansible_host: aws_instance.srv.private_ip
-# YAML
-}
+# #    <<YAML
+# # ---
+# # ansible_host: aws_instance.srv.private_ip
+# # YAML
+# }
 
-output "ServerIP" {
-  value = aws_instance.srv.private_ip
-}
+# output "ServerIP" {
+#   value = aws_instance.srv.private_ip
+# }
 
-output "Group" {
-  value = "Amazon Linux"
-}
+# output "Group" {
+#   value = "Amazon Linux"
+# }
