@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 provider "awx" {
-  hostname = "http://54.158.48.15"
+  hostname = "http://172.32.30.15"
   username = "jenkins"
   password = "jenkins"    
 }
