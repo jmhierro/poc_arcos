@@ -5,5 +5,7 @@
         ],
         "nagios": "true",
         "user_pmp": "true",
-        "user_nss": "true"
+        "user_nss": "true",
+        "timezone" : "America/Argentina/Buenos_Aires"
+        
 }
