@@ -28,7 +28,7 @@ resource "aws_instance" "srv" {
   vpc_security_group_ids = ["sg-046a78bd04f2057b2"]
   associate_public_ip_address = true
   source_dest_check  = false
-  instance_type      = "t2.micro"
+  instance_type      = "t2.small"
   subnet_id          = "subnet-009c40c86e0ad16ff"
   tags = {
     Name = "poc-arcos",
