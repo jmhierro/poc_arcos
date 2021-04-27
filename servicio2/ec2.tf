@@ -4,10 +4,14 @@ provider "aws" {
   profile                 = "nubiral-demo"
 }
 
+variable awx_user {}
+variable awx_pass {}
+variable awx_host {}
+
 provider "awx" {
-  hostname = "http://172.32.30.15"
-  username = "jenkins"
-  password = "jenkins"    
+  hostname = var.awx_host
+  username = var.awx_user
+  password = var.awx_pass
 }
 
 resource "awx_inventory_group" "default" {
